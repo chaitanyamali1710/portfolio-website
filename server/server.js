@@ -108,6 +108,15 @@ app.get("/projects", async (req, res) => {
     res.status(500).send("Error fetching projects");
   }
 });
+app.put("/projects/:id", async (req, res) => {
+  const updated = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(updated);
+});
+
+app.delete("/projects/:id", async (req, res) => {
+  await Project.findByIdAndDelete(req.params.id);
+  res.send("Deleted");
+});
 
 /* ✅ START SERVER */
 app.listen(5000, () => {

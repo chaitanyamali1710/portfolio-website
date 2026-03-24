@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 
+const API = "https://portfolio-website-8ofh.onrender.com";
+
 const Admin = () => {
   const [messages, setMessages] = useState([]);
   const [projects, setProjects] = useState([]);
@@ -13,39 +15,41 @@ const Admin = () => {
     live: "",
     image: "",
   });
-  const [editingId, setEditingId] = useState(null); // Track which project we are editing
+  const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
     fetchMessages();
     fetchProjects();
   }, []);
 
+  // ✅ FETCH MESSAGES
   const fetchMessages = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:5000/messages");
+      const res = await axios.get(`${API}/messages`);
       setMessages(res.data);
     } catch (error) {
       console.log(error);
     }
   };
 
+  // ✅ FETCH PROJECTS (FIXED)
   const fetchProjects = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:5000/projects");
+      const res = await axios.get(`${API}/projects`);
       setProjects(res.data);
     } catch (err) {
       console.log(err);
     }
   };
 
+  // ✅ ADD / UPDATE PROJECT
   const addOrUpdateProject = async (e) => {
     e.preventDefault();
 
     try {
       if (editingId) {
-        // Editing existing project
         const res = await axios.put(
-          `http://127.0.0.1:5000/projects/${editingId}`,
+          `${API}/projects/${editingId}`,
           project
         );
         setProjects(
@@ -53,13 +57,11 @@ const Admin = () => {
         );
         alert("Project updated!");
       } else {
-        // Adding new project
-        const res = await axios.post("http://127.0.0.1:5000/projects", project);
+        const res = await axios.post(`${API}/projects`, project);
         setProjects([...projects, res.data]);
         alert("Project added!");
       }
 
-      // Reset form and editing state
       setProject({
         title: "",
         description: "",
@@ -75,9 +77,10 @@ const Admin = () => {
     }
   };
 
+  // ✅ DELETE PROJECT
   const deleteProject = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:5000/projects/${id}`);
+      await axios.delete(`${API}/projects/${id}`);
       setProjects(projects.filter((p) => p._id !== id));
     } catch (err) {
       console.error(err);
@@ -85,6 +88,7 @@ const Admin = () => {
     }
   };
 
+  // ✅ EDIT PROJECT
   const editProject = (proj) => {
     setProject({
       title: proj.title,
@@ -97,15 +101,16 @@ const Admin = () => {
     setEditingId(proj._id);
   };
 
+  // ✅ IMAGE UPLOAD (Cloudinary)
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "your_preset_here"); // replace with your Cloudinary preset
+    formData.append("upload_preset", "your_preset_here"); // ⚠️ change this
 
     try {
       const res = await axios.post(
-        "https://api.cloudinary.com/v1_1/<cloud_name>/image/upload",
+        "https://api.cloudinary.com/v1_1/<cloud_name>/image/upload", // ⚠️ change this
         formData
       );
       setProject({ ...project, image: res.data.secure_url });
@@ -142,7 +147,6 @@ const Admin = () => {
               className="bg-gray-800 p-4 mb-4 rounded-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
             >
               <p><strong>Name:</strong> {msg.name}</p>
               <p><strong>Email:</strong> {msg.email}</p>
@@ -152,104 +156,61 @@ const Admin = () => {
         </AnimatePresence>
       </div>
 
-      {/* Add / Edit Project Form */}
+      {/* Add / Edit Project */}
       <div className="mb-10">
-        <h2 className="text-2xl mb-4">{editingId ? "Edit Project" : "Add New Project"}</h2>
-        <form onSubmit={addOrUpdateProject} className="mb-10">
-          <input
-            placeholder="Title"
-            className="p-2 m-2 text-black rounded w-full"
-            value={project.title}
-            onChange={(e) => setProject({ ...project, title: e.target.value })}
-          />
-          <input
-            placeholder="Description"
-            className="p-2 m-2 text-black rounded w-full"
-            value={project.description}
-            onChange={(e) =>
-              setProject({ ...project, description: e.target.value })
-            }
-          />
-          <input
-            placeholder="Tech"
-            className="p-2 m-2 text-black rounded w-full"
-            value={project.tech}
-            onChange={(e) => setProject({ ...project, tech: e.target.value })}
-          />
-          <input
-            placeholder="GitHub Link"
-            className="p-2 m-2 text-black rounded w-full"
-            value={project.github}
-            onChange={(e) => setProject({ ...project, github: e.target.value })}
-          />
-          <input
-            placeholder="Live Link"
-            className="p-2 m-2 text-black rounded w-full"
-            value={project.live}
-            onChange={(e) => setProject({ ...project, live: e.target.value })}
-          />
-          <input
-            type="file"
-            onChange={uploadImage}
-            className="p-2 m-2 rounded w-full text-black"
-          />
+        <h2 className="text-2xl mb-4">
+          {editingId ? "Edit Project" : "Add Project"}
+        </h2>
+
+        <form onSubmit={addOrUpdateProject}>
+          <input placeholder="Title" className="p-2 m-2 text-black w-full" value={project.title}
+            onChange={(e) => setProject({ ...project, title: e.target.value })} />
+
+          <input placeholder="Description" className="p-2 m-2 text-black w-full" value={project.description}
+            onChange={(e) => setProject({ ...project, description: e.target.value })} />
+
+          <input placeholder="Tech" className="p-2 m-2 text-black w-full" value={project.tech}
+            onChange={(e) => setProject({ ...project, tech: e.target.value })} />
+
+          <input placeholder="GitHub" className="p-2 m-2 text-black w-full" value={project.github}
+            onChange={(e) => setProject({ ...project, github: e.target.value })} />
+
+          <input placeholder="Live Link" className="p-2 m-2 text-black w-full" value={project.live}
+            onChange={(e) => setProject({ ...project, live: e.target.value })} />
+
+          <input type="file" onChange={uploadImage} className="m-2" />
+
           {project.image && (
-            <img
-              src={project.image}
-              alt="preview"
-              className="w-32 h-20 object-cover m-2 rounded"
-            />
+            <img src={project.image} className="w-32 m-2 rounded" />
           )}
-          <button
-            className="bg-green-500 px-4 py-2 m-2 rounded hover:bg-green-600"
-            type="submit"
-          >
+
+          <button className="bg-green-500 px-4 py-2 m-2 rounded">
             {editingId ? "Update Project" : "Add Project"}
           </button>
         </form>
       </div>
 
-      {/* Project List */}
+      {/* Projects */}
       <div>
         <h2 className="text-2xl mb-4">Projects</h2>
         <AnimatePresence>
           {projects.map((proj) => (
             <motion.div
               key={proj._id}
-              className="bg-gray-800 p-4 mb-4 rounded-lg flex justify-between items-center"
+              className="bg-gray-800 p-4 mb-4 rounded-lg flex justify-between"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
             >
               <div>
                 <strong>{proj.title}</strong>
                 <p>{proj.tech}</p>
-                <a href={proj.github} target="_blank" className="underline">
-                  GitHub
-                </a>{" "}
-                |{" "}
-                <a href={proj.live} target="_blank" className="underline">
-                  Live
-                </a>
               </div>
-              {proj.image && (
-                <img
-                  src={proj.image}
-                  alt="project"
-                  className="w-20 h-12 object-cover rounded"
-                />
-              )}
+
               <div className="flex gap-2">
-                <button
-                  onClick={() => editProject(proj)}
-                  className="bg-blue-500 px-3 py-1 rounded hover:bg-blue-600"
-                >
+                <button onClick={() => editProject(proj)} className="bg-blue-500 px-3 py-1 rounded">
                   Edit
                 </button>
-                <button
-                  onClick={() => deleteProject(proj._id)}
-                  className="bg-red-500 px-3 py-1 rounded hover:bg-red-600"
-                >
+                <button onClick={() => deleteProject(proj._id)} className="bg-red-500 px-3 py-1 rounded">
                   Delete
                 </button>
               </div>

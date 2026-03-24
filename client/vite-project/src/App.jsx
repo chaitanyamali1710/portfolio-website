@@ -12,11 +12,11 @@ import Home from "./pages/Home";
 function App() {
   return (
     <>
-      <Navbar />
-      <Hero />
+     <Navbar />
+      {/* <Hero />
       <Projects />
       <Certificates />
-      <Contact />
+      <Contact />*/}
      <Router>
        <Routes>
        <Route path="/" element={<Home />} />
