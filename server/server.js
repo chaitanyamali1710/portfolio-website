@@ -6,6 +6,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import Admin from "./models/Admin.js";
 import Project from "./models/Project.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
