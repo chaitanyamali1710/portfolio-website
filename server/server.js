@@ -10,7 +10,7 @@ import Project from "./models/Project.js";
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://your-frontend.vercel.app"
 }));
 app.use(express.json());
 
