@@ -10,9 +10,12 @@ import Project from "./models/Project.js";
 const app = express();
 
 app.use(cors({
-  origin: "https://your-frontend.vercel.app"
+  origin: [
+    "http://localhost:5173",
+    "https://portfolio-website-ym27.vercel.app"
+  ],
+  methods: ["GET", "POST"],
 }));
-app.use(express.json());
 
 /* ✅ CONNECT MONGODB */
 mongoose.connect("mongodb://localhost:27017/portfolio")

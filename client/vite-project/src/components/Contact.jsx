@@ -15,7 +15,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const res = await axios.post("https://your-backend.onrender.com/contact", form);
+    const res = await axios.post("https://portfolio-website-8ofh.onrender.com/contact", form);
     console.log(res.data);
     alert("Message sent successfully!");
   } catch (error) {
