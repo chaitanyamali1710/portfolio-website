@@ -24,7 +24,7 @@ const Login = () => {
     <div className="h-screen flex items-center justify-center bg-black text-white">
       <section className="min-h-screen bg-black text-white px-10 py-20"></section>
       <h2 className="text-4xl font-bold text-center mb-12">
-        Contact <span className="text-blue-400">Me</span>
+        Admin <span className="text-blue-400">Login</span>
       </h2>
 
       <form onSubmit={handleLogin} className="bg-gray-800 p-6 rounded-lg">

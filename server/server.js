@@ -11,6 +11,7 @@ dotenv.config();
 
 const app = express();
 
+
 app.use(cors({
   origin: [
     "http://localhost:5173",
@@ -116,6 +117,19 @@ app.put("/projects/:id", async (req, res) => {
 app.delete("/projects/:id", async (req, res) => {
   await Project.findByIdAndDelete(req.params.id);
   res.send("Deleted");
+});
+
+app.get("/create-admin", async (req, res) => {
+  const hashedPassword = await bcrypt.hash("123456", 10);
+
+  const admin = new Admin({
+    email: "admin@gmail.com",
+    password: hashedPassword,
+  });
+
+  await admin.save();
+
+  res.send("Admin created ✅");
 });
 
 /* ✅ START SERVER */
