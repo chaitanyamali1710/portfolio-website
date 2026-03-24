@@ -120,16 +120,21 @@ app.delete("/projects/:id", async (req, res) => {
 });
 
 app.get("/create-admin", async (req, res) => {
-  const hashedPassword = await bcrypt.hash("123456", 10);
+  try {
+    const hashedPassword = await bcrypt.hash("123456", 10);
 
-  const admin = new Admin({
-    email: "admin@gmail.com",
-    password: hashedPassword,
-  });
+    const admin = new Admin({
+      email: "admin@gmail.com",
+      password: hashedPassword,
+    });
 
-  await admin.save();
+    await admin.save();
 
-  res.send("Admin created ✅");
+    res.send("Admin created ✅");
+  } catch (err) {
+    console.log(err);
+    res.send("Error creating admin");
+  }
 });
 
 /* ✅ START SERVER */
