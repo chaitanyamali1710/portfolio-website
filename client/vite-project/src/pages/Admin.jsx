@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 
-const API = "https://portfolio-website-8ofh.onrender.com";
+const API = "http://localhost:5000";
 
 const Admin = () => {
   const [messages, setMessages] = useState([]);
