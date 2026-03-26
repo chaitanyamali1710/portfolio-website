@@ -12,20 +12,19 @@ import Home from "./pages/Home";
 function App() {
   return (
     <>
-     <Navbar />
-      {/* <Hero />
-      <Projects />
-      <Certificates />
-      <Contact />*/}
      <Router>
+       <Navbar />
+       {/* <Hero />
+       <Projects />
+       <Certificates />
+       <Contact />*/}
        <Routes>
-       <Route path="/" element={<Home />} />
-       <Route path="/admin" element={<Admin />} />
-       <Route path="/login" element={<Login />} />
-       <Route path="/admin" element={ <ProtectedRoute><Admin /></ProtectedRoute>}/>
-       </Routes>
-      
-</Router>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={ <ProtectedRoute><Admin /></ProtectedRoute>}/>
+        </Routes>
+      </Router>
     </>
   );
 }
