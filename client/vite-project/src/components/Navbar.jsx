@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
+const navItems = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -7,32 +14,28 @@ const Navbar = () => {
   return (
     <nav className="fixed w-full top-0 left-0 bg-black/70 backdrop-blur-md text-white z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-
-        {/* Left Section: Logo + Admin Login */}
         <div className="flex items-center gap-4">
-          <h1 className="text-2xl font-bold text-blue-400">
-            Chaitanya.dev
-          </h1>
-          <Link
-            to="/login"
-            className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-300 border border-gray-600 rounded-lg hover:text-blue-400 hover:border-blue-400 transition-all duration-300"
+          <a
+            href="#home"
+            className="text-2xl font-bold text-blue-400 transition-colors duration-300 hover:text-blue-300"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
-            Admin
-          </Link>
+            Chaitanya.dev
+          </a>
         </div>
 
-        {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 text-gray-300">
-          <li className="hover:text-blue-400 cursor-pointer transition-colors duration-300">Home</li>
-          <li className="hover:text-blue-400 cursor-pointer transition-colors duration-300">Projects</li>
-          <li className="hover:text-blue-400 cursor-pointer transition-colors duration-300">Skills</li>
-          <li className="hover:text-blue-400 cursor-pointer transition-colors duration-300">Contact</li>
+          {navItems.map((item) => (
+            <li key={item.label}>
+              <a
+                href={item.href}
+                className="cursor-pointer transition-colors duration-300 hover:text-blue-400"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
 
-        {/* Right Section: Resume Button + Mobile Menu */}
         <div className="flex items-center gap-4">
           <a
             href="/resume.pdf"
@@ -46,29 +49,39 @@ const Navbar = () => {
             Resume
           </a>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button onClick={() => setOpen(!open)} className="text-2xl">
-              ☰
+            <button
+              onClick={() => setOpen(!open)}
+              className="rounded-lg border border-gray-700 p-2 transition hover:border-blue-400 hover:text-blue-400"
+              aria-label="Toggle navigation menu"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {open && (
         <div className="md:hidden bg-black/90 backdrop-blur-md text-center py-4 border-t border-gray-800">
-          <p className="py-2 hover:text-blue-400 cursor-pointer transition-colors duration-300">Home</p>
-          <p className="py-2 hover:text-blue-400 cursor-pointer transition-colors duration-300">Projects</p>
-          <p className="py-2 hover:text-blue-400 cursor-pointer transition-colors duration-300">Skills</p>
-          <p className="py-2 hover:text-blue-400 cursor-pointer transition-colors duration-300">Contact</p>
-          <Link
-            to="/login"
-            className="inline-block mt-2 px-4 py-2 text-sm text-gray-300 border border-gray-600 rounded-lg hover:text-blue-400 hover:border-blue-400 transition-all duration-300"
-            onClick={() => setOpen(false)}
-          >
-            Admin Login
-          </Link>
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="block py-2 transition-colors duration-300 hover:text-blue-400"
+              onClick={() => setOpen(false)}
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
       )}
     </nav>

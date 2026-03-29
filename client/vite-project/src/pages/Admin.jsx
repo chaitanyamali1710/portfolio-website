@@ -124,16 +124,7 @@ const Admin = () => {
 
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl">Admin Dashboard</h1>
-        <button
-          onClick={() => {
-            localStorage.removeItem("token");
-            window.location.href = "/login";
-          }}
-          className="bg-red-500 px-4 py-2 rounded hover:bg-red-600"
-        >
-          Logout
-        </button>
+        <h1 className="text-3xl">Project Upload Dashboard</h1>
       </div>
 
       {/* Messages */}
@@ -222,73 +213,3 @@ const Admin = () => {
 };
 
 export default Admin;
-/*import { useEffect, useState } from "react";
-import axios from "axios";
-
-const Admin = () => {
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    fetchMessages();
-  }, []);
-
-  const fetchMessages = async () => {
-    try {
-      const res = await axios.get("http://127.0.0.1:5000/messages");
-      setMessages(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const [project, setProject] = useState({
-  title: "",
-  description: "",
-  tech: "",
-  github: "",
-  live: "",
-});
-
-const addProject = async (e) => {
-  e.preventDefault();
-
-  try {
-    await axios.post("http://127.0.0.1:5000/projects", project);
-    alert("Project added!");
-  } catch (err) {
-    alert("Error adding project");
-  }
-};
-
-  return (
-    <div className="min-h-screen bg-black text-white p-10">
-
-      {/*  ADD LOGOUT BUTTON HERE */
- /*     <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl">Admin Dashboard</h1>
-
-        <button
-          onClick={() => {
-            localStorage.removeItem("token");
-            window.location.href = "/login";
-          }}
-          className="bg-red-500 px-4 py-2 rounded hover:bg-red-600"
-        >
-          Logout
-        </button>
-      </div>
-
-      {/* Messages */
- /*     {messages.map((msg, index) => (
-        <div key={index} className="bg-gray-800 p-4 mb-4 rounded-lg">
-          <p><strong>Name:</strong> {msg.name}</p>
-          <p><strong>Email:</strong> {msg.email}</p>
-          <p><strong>Message:</strong> {msg.message}</p>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export default Admin;
-*/

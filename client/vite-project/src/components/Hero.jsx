@@ -1,65 +1,50 @@
-import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import heroImg from "../assets/hero.png";
 
 const Hero = () => {
   return (
-    <section className="h-screen flex flex-col md:flex-row items-center justify-between px-10 bg-black text-white relative overflow-hidden">
+    <section
+      id="home"
+      className="min-h-screen scroll-mt-24 bg-black px-6 py-20 text-white md:px-10"
+    >
+      <div className="mx-auto grid max-w-6xl items-center gap-10 rounded-[2rem] border border-gray-800 bg-gray-900/70 p-6 shadow-lg md:grid-cols-[1.2fr_0.8fr] md:p-10">
+        <div className="text-center md:text-left">
+          <p className="mb-4 text-xl font-semibold tracking-wide text-slate-300 md:text-3xl">
+            Hello, Everyone.
+          </p>
 
-      {/* Glow Background */}
-      <div className="absolute w-[500px] h-[500px] bg-blue-500 opacity-20 blur-3xl rounded-full top-[-100px] left-[-100px]"></div>
-      <div className="absolute w-[400px] h-[400px] bg-purple-500 opacity-20 blur-3xl rounded-full bottom-[-100px] right-[-100px]"></div>
+          <p className="mb-4 text-2xl font-semibold text-slate-300 md:text-4xl">
+            This is Chaitanya
+          </p>
 
-      {/* LEFT SIDE */}
-      <motion.div
-        className="z-10"
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-          Hi, I'm{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-            Chaitanya
-          </span>
-        </h1>
+          <h1 className="mb-6 text-4xl font-bold tracking-tight text-slate-100 md:text-6xl">
+            Chaitanya Mali
+          </h1>
 
-        {/* Typing Animation */}
-        <div className="mt-4 text-xl text-gray-300">
-          <TypeAnimation
-            sequence={[
-              "MERN Developer 🚀",
-              2000,
-              "Java + DSA Enthusiast 💻",
-              2000,
-              "Building Real Projects 🔥",
-              2000,
-            ]}
-            speed={50}
-            repeat={Infinity}
+          <div className="max-w-3xl text-sm tracking-[0.1em] text-gray-400 md:text-xl">
+            <TypeAnimation
+              sequence={[
+                "MERN Developer | Java Enthusiast | Problem Solver",
+                2000,
+                "Full Stack Builder | Clean UI Focus | Fast Learner",
+                2000,
+                "React | Node.js | MongoDB | Tailwind CSS",
+                2000,
+              ]}
+              speed={50}
+              repeat={Infinity}
+            />
+          </div>
+        </div>
+
+        <div className="flex justify-center md:justify-end">
+          <img
+            src={heroImg}
+            alt="Chaitanya Mali"
+            className="w-52 rounded-full border-4 border-blue-500/40 object-cover shadow-[0_0_40px_rgba(59,130,246,0.25)] transition duration-300 hover:scale-105 md:w-72"
           />
         </div>
-
-        {/* Buttons */}
-        <div className="mt-6 flex gap-4">
-          <button className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg hover:scale-105 transition">
-            View Projects
-          </button>
-
-          <button className="px-6 py-2 border border-blue-500 rounded-lg hover:bg-blue-500 transition">
-            Contact Me
-          </button>
-        </div>
-      </motion.div>
-
-      {/* RIGHT SIDE */}
-       <motion.img
-  src={heroImg}
-  alt="profile"
-className="w-72 md:w-96 mt-10 md:mt-0 rounded-full border-2 border-blue-30 shadow-[0_0_40px_#3b82f6] hover:scale-105 transition duration-300"  initial={{ x: 100, opacity: 0 }}
-  animate={{ x: 0, opacity: 1 }}
-  transition={{ duration: 1 }}
-/>
+      </div>
     </section>
   );
 };
