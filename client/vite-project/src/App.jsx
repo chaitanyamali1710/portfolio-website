@@ -20,7 +20,6 @@ function App() {
        <Contact />*/}
        <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<Admin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={ <ProtectedRoute><Admin /></ProtectedRoute>}/>
         </Routes>
