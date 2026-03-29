@@ -1,7 +1,7 @@
 const contactLinks = [
   {
     label: "Email",
-    href: "mailto:your-email@example.com",
+    href: "mailto:chaitanyamali02005@gmail.com",
     className: "hover:text-blue-300",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-7 w-7 fill-current">
@@ -11,7 +11,7 @@ const contactLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/",
+    href: "https://www.linkedin.com/in/chaitanya-mali-048ab52a6",
     className: "hover:text-blue-300",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-7 w-7 fill-current">
