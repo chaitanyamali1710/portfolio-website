@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { apiUrl } from "../lib/api";
 
 const Contact = () => {
   const [form, setForm] = useState({
@@ -15,7 +16,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const res = await axios.post("http://localhost:5000/contact", form);
+    const res = await axios.post(apiUrl("/contact"), form);
     console.log(res.data);
     alert("Message sent successfully!");
   } catch (error) {

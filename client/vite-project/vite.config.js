@@ -9,6 +9,18 @@ export default defineConfig({
         target: "http://localhost:5000",
         changeOrigin: true,
       },
+      "/login": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+      },
+      "/messages": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+      },
+      "/projects": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+      },
     },
   },
 })

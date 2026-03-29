@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
-
-const API = "http://localhost:5000";
+import { apiUrl } from "../lib/api";
 
 const Admin = () => {
   const [messages, setMessages] = useState([]);
@@ -25,7 +24,7 @@ const Admin = () => {
   // ✅ FETCH MESSAGES
   const fetchMessages = async () => {
     try {
-      const res = await axios.get(`${API}/messages`);
+      const res = await axios.get(apiUrl("/messages"));
       setMessages(res.data);
     } catch (error) {
       console.log(error);
@@ -35,7 +34,7 @@ const Admin = () => {
   // ✅ FETCH PROJECTS (FIXED)
   const fetchProjects = async () => {
     try {
-      const res = await axios.get(`${API}/projects`);
+      const res = await axios.get(apiUrl("/projects"));
       setProjects(res.data);
     } catch (err) {
       console.log(err);
@@ -49,7 +48,7 @@ const Admin = () => {
     try {
       if (editingId) {
         const res = await axios.put(
-          `${API}/projects/${editingId}`,
+          apiUrl(`/projects/${editingId}`),
           project
         );
         setProjects(
@@ -57,7 +56,7 @@ const Admin = () => {
         );
         alert("Project updated!");
       } else {
-        const res = await axios.post(`${API}/projects`, project);
+        const res = await axios.post(apiUrl("/projects"), project);
         setProjects([...projects, res.data]);
         alert("Project added!");
       }
@@ -80,7 +79,7 @@ const Admin = () => {
   // ✅ DELETE PROJECT
   const deleteProject = async (id) => {
     try {
-      await axios.delete(`${API}/projects/${id}`);
+      await axios.delete(apiUrl(`/projects/${id}`));
       setProjects(projects.filter((p) => p._id !== id));
     } catch (err) {
       console.error(err);
