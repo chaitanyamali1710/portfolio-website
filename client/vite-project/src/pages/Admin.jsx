@@ -121,7 +121,7 @@ const Admin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white p-10">
+    <div className="min-h-screen bg-black text-white p-10 pt-24">
 
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
