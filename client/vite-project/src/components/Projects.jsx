@@ -16,12 +16,12 @@ const projects = [
     live: "https://portfolio-website-ym27.vercel.app/",
   },
   {
-    title: "Hostel Management System",
+    title: "Poultry Management System",
     description:
       "A full-stack project idea for managing rooms, students, and hostel operations with organized data handling.",
     tech: ["MERN", "MongoDB", "Express"],
-    github: "https://github.com/chaitanyamali1710",
-    live: "https://portfolio-website-ym27.vercel.app/",
+    github: "https://github.com/chaitanyamali1710/poultry-farm-system.git",
+    live: "https://poultry-farm-system-eight.vercel.app/",
   },
 ];
 
