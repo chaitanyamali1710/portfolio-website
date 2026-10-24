@@ -11,17 +11,18 @@ const About = () => {
 
         <div className="rounded-[2rem] border border-gray-800 bg-gray-900/70 p-6 text-base leading-7 text-gray-300 shadow-lg transition duration-300 hover:border-blue-500 md:p-8">
           <p>
-            I am Chaitanya Mali, a Computer Science student and full-stack developer who
-            enjoys building modern, responsive, and practical web applications.
+            I am Chaitanya Mali, a motivated Computer Science undergraduate skilled at
+            turning user and business needs into full-stack products using the MERN stack,
+            JavaScript, HTML, CSS, REST APIs, and Firebase.
           </p>
           <p className="mt-6">
-            My main focus is creating clean user interfaces with React and building reliable
-            backend functionality using Node.js, Express, and MongoDB. I also enjoy problem
-            solving, improving performance, and turning ideas into polished projects.
+            I have experience building responsive, data-driven web platforms with real-time
+            dashboards and integrated APIs. I am familiar with AI/ML concepts, prompt
+            engineering, GitHub, and Jenkins CI/CD.
           </p>
           <p className="mt-6">
-            I am continuously learning, exploring better development practices, and growing
-            as a developer through projects, coding practice, and real implementation work.
+            I am a quick learner with strong analytical and problem-solving abilities,
+            interested in enterprise ERP, AI automation, and secure software delivery.
           </p>
         </div>
       </div>

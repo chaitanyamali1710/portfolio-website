@@ -1,25 +1,33 @@
 const projects = [
   {
-    title: "Portfolio Website",
+    title: "MachineGuard - Industrial AI Maintenance and Operations Platform",
     description:
-      "A modern personal portfolio built to showcase skills, projects, certificates, and contact details in one clean experience.",
-    tech: ["React", "Vite", "Tailwind CSS"],
-    github: "https://github.com/chaitanyamali1710/portfolio-website",
-    live: "https://portfolio-website-ym27.vercel.app/",
+      "Built a MERN-based industrial monitoring platform with simulated sensor data, interactive telemetry dashboards, equipment health analytics, anomaly alerts, and maintenance work orders. Integrated a FastAPI AI service and RAG assistant to analyze machine conditions and provide explainable recommendations.",
+    tech: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST APIs",
+      "JWT",
+      "AI Integration",
+      "RAG",
+    ],
+    github: "https://github.com/chaitanyamali1710/Machine-Guard",
+    live: "https://machine-guard-11d86.web.app/",
   },
   {
-    title: "Currency Converter",
+    title: "Smart Poultry Farm Management System",
     description:
-      "A responsive web app for converting currencies with a simple interface and live conversion-focused workflow.",
-    tech: ["JavaScript", "API", "CSS"],
-    github: "https://github.com/chaitanyamali1710",
-    live: "https://portfolio-website-ym27.vercel.app/",
-  },
-  {
-    title: "Poultry Management System",
-    description:
-      "A full-stack project idea for managing rooms, students, and hostel operations with organized data handling.",
-    tech: ["MERN", "MongoDB", "Express"],
+      "Developed a customer ordering system and admin dashboard for poultry operations, covering flock health, climate monitoring, vaccination schedules, treatment alerts, mortality thresholds, and low-stock notifications.",
+    tech: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST APIs",
+      "External APIs",
+    ],
     github: "https://github.com/chaitanyamali1710/poultry-farm-system.git",
     live: "https://poultry-farm-system-bychaitanya.vercel.app/",
   },
@@ -37,7 +45,7 @@ const Projects = () => {
           and building useful real-world applications.
         </p>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2">
           {projects.map((project) => (
             <div
               key={project.title}

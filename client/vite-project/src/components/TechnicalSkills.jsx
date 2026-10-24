@@ -1,16 +1,41 @@
 const skills = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "React",
-  "Vite",
-  "Tailwind CSS",
-  "Node.js",
-  "Express.js",
-  "MongoDB",
-  "Java",
-  "DSA",
-  "Git & GitHub",
+  {
+    category: "Languages",
+    items: ["JavaScript", "TypeScript", "SQL", "Python", "C"],
+  },
+  {
+    category: "Frontend",
+    items: ["React.js", "HTML", "CSS"],
+  },
+  {
+    category: "Backend",
+    items: [
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "JWT Authentication",
+      "API Integration",
+    ],
+  },
+  {
+    category: "Databases",
+    items: ["MongoDB", "MySQL"],
+  },
+  {
+    category: "Tools & DevOps",
+    items: [
+      "Git",
+      "GitHub",
+      "Postman",
+      "Jenkins",
+      "CI/CD Fundamentals",
+      "API Security",
+    ],
+  },
+  {
+    category: "Core Concepts",
+    items: ["Data Structures & Algorithms (DSA)", "Object-Oriented Programming (OOP)", "DBMS"],
+  },
 ];
 
 const TechnicalSkills = () => {
@@ -24,13 +49,25 @@ const TechnicalSkills = () => {
           Technical <span className="text-blue-400">Skills</span>
         </h2>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {skills.map((skill) => (
+        <div className="grid gap-5 sm:grid-cols-2">
+          {skills.map(({ category, items }) => (
             <div
-              key={skill}
-              className="rounded-2xl border border-gray-800 bg-gray-900/70 px-5 py-4 text-center text-base font-medium text-gray-200 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-blue-500 hover:text-white"
+              key={category}
+              className="rounded-2xl border border-gray-800 bg-gray-900/70 p-5 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-blue-500"
             >
-              {skill}
+              <h3 className="mb-4 text-lg font-semibold text-blue-300">
+                {category}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {items.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-full bg-blue-500/10 px-3 py-1.5 text-sm text-gray-200"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
